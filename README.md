@@ -185,8 +185,8 @@ docs/Project_Report.pdf
 
 # 👨‍💻 Team Members
 
-- Arpan Nandi
 - Arpan Pramanick
+- Arpan Nandi
 - Ayan Sarkar
 - Ayush Kumar
 
