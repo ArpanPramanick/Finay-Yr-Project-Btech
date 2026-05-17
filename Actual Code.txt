@@ -1,0 +1,135 @@
+#include <Arduino.h>
+
+const int noOfSensors = 8;
+int sensorPins[noOfSensors] = {A0, A1, A2, A3, A4, A5, A6, A7}; // Define pins for each sensor
+int lowerLimits[noOfSensors] = {40, 50, 60, 70, 80, 90, 100, 110};
+int upperLimits[noOfSensors] = {60, 70, 80, 90, 100, 110, 120, 130};
+// Step 1: Create an array to store boolean data for each sensor
+bool input[noOfSensors];
+bool range[noOfSensors];
+
+// Function to send data to the local data center
+void sendDataToDataCenter(bool* values, int size) {
+    // Here goes the code to send data to the local data center
+    // For example:
+    Serial.println("Sending data to local data center...");
+    // Send values array to data center
+}
+
+// Function to check if sensor values normalize after repeated readings
+bool checkNormal() {
+    int outOfBound = 0;
+    // Repeat the process for 5 iterations
+    for (int repeat = 0; repeat < 5; ++repeat) {
+        // Step 2: Take input from each sensor and update input array accordingly
+        for (int i = 0; i < noOfSensors; i++) {
+            // Read sensor value from analog pin
+            int sensorValue = analogRead(sensorPins[i]);
+
+            // If sensor value is within the range, set input[i] to false (0)
+            if (sensorValue >= lowerLimits[i] && sensorValue <= upperLimits[i]) {
+                input[i] = false;
+            } else {
+                input[i] = true;
+                // Step 4: Create a boolean array named range based on sensor values
+                if (sensorValue < lowerLimits[i]) range[i] = 0;
+                else if (sensorValue > upperLimits[i]) range[i] = 1;
+            }
+        }
+
+        // Step 5: Collect packet data for sensors if out of range
+        // Step 6, 7, 8, 9, 10 are implemented here
+        outOfBound = 0;
+        for (int i = 0; i < noOfSensors; i++) {
+            if (input[i]) {
+                outOfBound++;
+            }
+        }
+        // Delay for 60 seconds before next iteration
+        delay(60 * 1000); // 60 seconds delay
+    }
+    // Return true if more than one sensor remains out of bounds after repeated readings
+    return outOfBound > 1;
+}
+
+void setup() {
+    Serial.begin(9600); // Initialize serial communication
+
+    // Initialize sensors as input pins
+    for (int i = 0; i < noOfSensors; i++) {
+        pinMode(sensorPins[i], INPUT);
+    }
+}
+
+void loop() {
+    // Step 2: Take input from each sensor and update input array accordingly
+    for (int i = 0; i < noOfSensors; i++) {
+        // Read sensor value from analog pin
+        int sensorValue = analogRead(sensorPins[i]);
+
+        // If sensor value is within the range, set input[i] to false (0)
+        if (sensorValue >= lowerLimits[i] && sensorValue <= upperLimits[i]) {
+            input[i] = false;
+        } else {
+            input[i] = true;
+            // Step 4: Create a boolean array named range based on sensor values
+            if (sensorValue < lowerLimits[i]) range[i] = 0;
+            else if (sensorValue > upperLimits[i]) range[i] = 1;
+        }
+    }
+
+    // Step 5: Collect packet data for sensors if out of range
+    // Step 6, 7, 8, 9, 10 are implemented here
+    int outOfBound = 0;
+    for (int i = 0; i < noOfSensors; i++) {
+        if (input[i]) {
+            outOfBound++;
+        }
+    }
+    bool flag = false;
+    // Check if any sensor value is out of bounds
+    if (outOfBound) {
+        // Check if sensor values normalize after repeated readings
+        flag = checkNormal();
+    }
+
+    // If more than one sensor remains out of bounds after repeated readings
+    if (flag) {
+        for (int i = 0; i < noOfSensors; i++) {
+            if (input[i]) {
+                outOfBound++;
+            }
+        }
+        // Step 8: Create a boolean array named values
+        int valuesSize = 3 * outOfBound;
+        bool values[valuesSize];
+
+        int valuesIndex = 0;
+        for (int i = 0; i < noOfSensors; i++) {
+            if (range[i]) {
+                // Step 9: Calculate the difference between actual value and range
+                int sensorValue = analogRead(sensorPins[i]); // Read sensor value again
+                int difference = 0;
+                if (sensorValue < lowerLimits[i]) {
+                    difference = lowerLimits[i] - sensorValue;
+                } else if (sensorValue > upperLimits[i]) {
+                    difference = sensorValue - upperLimits[i];
+                }
+
+                // Convert difference to 3-bit binary and store in values array
+                for (int j = 2; j >= 0; j--) {
+                    values[valuesIndex + j] = difference & 1;
+                    difference >>= 1;
+                }
+
+                valuesIndex += 3;
+            }
+        }
+
+        // Step 10: Send data to the local data center
+        sendDataToDataCenter(values, valuesSize);
+    }
+
+    // Delay to control the rate of sensor readings
+    delay(5 * 60 * 1000); // 5 minutes delay
+}
