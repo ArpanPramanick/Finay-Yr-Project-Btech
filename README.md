@@ -1,47 +1,101 @@
-# ❤️ Heart Smart Tech  
-## IoT-Enhanced Smart Healthcare Monitoring with Energy Efficient Data Compression
+# ❤️ Heart Smart Tech
+## IoT-Enhanced Smart Healthcare Monitoring System with Energy Efficient Data Compression
 
-![GitHub Repo stars](https://img.shields.io/github/stars/ArpanPramanick/Finay-Yr-Project-Btech?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/ArpanPramanick/Finay-Yr-Project-Btech?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/ArpanPramanick/Finay-Yr-Project-Btech?style=for-the-badge)
+<p align="center">
+  <img src="https://img.shields.io/badge/ESP32-IoT-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Arduino-Embedded-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Healthcare-Monitoring-red?style=for-the-badge">
+  <img src="https://img.shields.io/badge/WSN-Compression-orange?style=for-the-badge">
+</p>
 
 ---
 
-## 📌 Overview
+# 📌 Project Overview
 
-Heart Smart Tech is an IoT-based smart healthcare monitoring system designed for continuous health parameter monitoring using ESP32 microcontrollers and multiple biomedical sensors.
+Heart Smart Tech is an advanced IoT-based healthcare monitoring system developed using ESP32 microcontrollers and biomedical sensors for real-time patient monitoring and intelligent emergency response.
 
-The project focuses on:
+The system focuses on:
 
-- Real-time patient monitoring
-- Energy-efficient sensor communication
-- Data compression techniques
-- Smart alert routing to nearest hospitals
-- Reduced bandwidth consumption
+- Real-time health parameter acquisition
+- Wireless sensor network optimization
+- Energy-efficient data transmission
+- Smart data compression techniques
+- Emergency alert routing
 - IoT-enabled healthcare automation
 
-This system integrates biomedical sensors with ESP32 and optimized data transmission algorithms to improve healthcare response efficiency.
+This project minimizes transmission overhead by sending only abnormal deviations instead of continuous raw sensor data.
 
 ---
 
 # 🧠 Key Features
 
-✅ Real-time health monitoring  
-✅ ESP32-based wireless communication  
+✅ Real-time patient monitoring  
+✅ ESP32-based wireless sensor communication  
 ✅ Pulse & ECG monitoring  
 ✅ Temperature & humidity sensing  
 ✅ Smart anomaly detection  
 ✅ SOS emergency alert system  
-✅ Energy-efficient data transmission  
+✅ Energy-efficient communication  
 ✅ Data compression using deviation-based encoding  
 ✅ Routing to nearest hospital  
-✅ IoT + Healthcare integration
+✅ Reduced bandwidth utilization  
+✅ IoT + Embedded Systems integration
 
 ---
 
-# 🏗️ System Architecture
+# 🏗️ Hardware Architecture
 
-![Architecture](images/architecture.png)
+<p align="center">
+  <img src="images/demo1.png" width="750">
+</p>
+
+---
+
+# 📡 Sensor Connectivity
+
+<p align="center">
+  <img src="images/demo2.png" width="650">
+</p>
+
+---
+
+# 🧍 Human Body Sensor Placement
+
+<p align="center">
+  <img src="images/demo3.png" width="500">
+</p>
+
+---
+
+# 🔄 Data Transmission Workflow
+
+<p align="center">
+  <img src="images/demo4.png" width="450">
+</p>
+
+---
+
+# ⚡ Energy Consumption Analysis
+
+The proposed data optimization algorithm significantly reduces energy consumption compared to traditional sensor transmission systems.
+
+<p align="center">
+  <img src="images/demo5.png" width="700">
+</p>
+
+---
+
+# 🛠️ Technologies Used
+
+| Category | Technologies |
+|---|---|
+| Microcontroller | ESP32 |
+| Programming | Embedded C++, Arduino |
+| Sensors | MAX30100, AD8232, DHT11, DS18B20, HC-SR04 |
+| Communication | GSM, IoT |
+| Concepts | Wireless Sensor Networks, Data Compression |
+| Cloud | IFTTT, Database Integration |
+| Algorithms | Modified Reverse Dijkstra Algorithm |
 
 ---
 
@@ -59,32 +113,6 @@ This system integrates biomedical sensors with ESP32 and optimized data transmis
 
 ---
 
-# 📡 Sensor Connectivity
-
-![Connectivity](images/sensor_connectivity.png)
-
----
-
-# 🧍 Human Body Sensor Placement
-
-![Body Sensors](images/body_sensor.png)
-
----
-
-# 🔄 Data Transmission Workflow
-
-![Data Flow](images/data_flow.png)
-
----
-
-# ⚡ Energy Consumption Analysis
-
-The proposed compression algorithm significantly reduces transmission energy consumption compared to traditional sensor transmission methods.
-
-![Energy Graph](images/energy_graph.png)
-
----
-
 # 🧪 Proposed Compression Logic
 
 The project uses:
@@ -92,16 +120,17 @@ The project uses:
 - Boolean flag arrays
 - Deviation arrays
 - Threshold-based transmission
-- Reduced bit transmission model
+- Reduced bit transmission
 - Smart anomaly filtering
 
-Instead of transmitting complete sensor values continuously, only abnormal deviations are transmitted.
+Instead of continuously transmitting complete sensor values, the system sends only abnormal deviations.
 
 This dramatically reduces:
 
 - Power consumption
-- Bandwidth usage
-- Sensor communication overhead
+- Transmission overhead
+- Sensor bandwidth usage
+- Energy utilization
 
 ---
 
@@ -110,25 +139,12 @@ This dramatically reduces:
 If abnormal sensor readings persist:
 
 1. ESP32 validates anomaly
-2. Local data centre receives alert
+2. Local data center receives alert
 3. SOS packet generated
 4. Modified reverse Dijkstra routing applied
 5. Alert forwarded to nearest hospital
 
----
-
-# 🛠️ Technologies Used
-
-- ESP32
-- Arduino IDE
-- IoT
-- Wireless Sensor Networks
-- Embedded C++
-- Biomedical Sensors
-- Data Compression
-- GSM Communication
-- IFTTT
-- Cloud Database
+This ensures fast emergency response with optimized network efficiency.
 
 ---
 
@@ -145,30 +161,32 @@ If abnormal sensor readings persist:
 
 ---
 
-# 📄 Research Paper / Report
+# 📄 Research Report
 
-Full project report available here:
+📘 Complete project report available in:
 
-📘 [Project Report](docs/Project_Report.pdf)
+```bash
+docs/Project_Report.pdf
+```
 
 ---
 
 # 🚀 Future Improvements
 
 - AI-based disease prediction
-- Cloud analytics dashboard
+- Cloud dashboard integration
 - Mobile application
-- MQTT integration
+- MQTT communication
 - Edge AI processing
 - Deep learning for ECG analysis
+- Real-time cloud analytics
 
 ---
 
 # 👨‍💻 Team Members
 
-
-- Arpan Pramanick
 - Arpan Nandi
+- Arpan Pramanick
 - Ayan Sarkar
 - Ayush Kumar
 
@@ -185,8 +203,10 @@ Department of Information Technology
 
 This project is developed for academic and research purposes.
 
+Licensed under the MIT License.
+
 ---
 
-# ⭐ If you like this project
+# ⭐ Support
 
-Give this repository a ⭐ on GitHub.
+If you found this project useful, give this repository a ⭐ on GitHub.
